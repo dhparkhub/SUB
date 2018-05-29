@@ -1,8 +1,29 @@
 
+<script type="text/javascript">
+  window.user = <%- user || 'null' %>
+</script>
+
 <!-- Bootstrap -->
 <script src="/lib/jquery/dist/jquery.min.js"></script>
 <script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="/lib/popper.js/dist/umd/popper.min.js"></script>
+
+<!-- AngularJS -->
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular-route/angular-route.min.js"></script>
+<script src="/lib/angular-resource/angular-resource.min.js"></script>
+
+<!-- main -->
+<script src="/client/main/main.client.module.js"></script>
+<script src="/client/main/config/main.client.routes.js"></script>
+<script src="/client/main/controllers/main.client.controller.js"></script>
+
+<!-- users -->
+<script src="/client/users/users.client.module.js"></script>
+<script src="/client/users/services/authentication.client.service.js"></script>
+
+<!-- application.js -->
+<script src="/client/application.js"></script>
 
 </body>
 </html>
