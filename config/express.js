@@ -5,6 +5,8 @@ const morgan = require('morgan')
 const compress = require('compression')
 const bodyParser = require('body-parser')
 const session = require('express-session')
+const passport = require('passport')
+const flash = require('connect-flash')
 
 module.exports = () => {
   const app = express()
@@ -20,12 +22,19 @@ module.exports = () => {
   app.use(bodyParser.urlencoded({ extended: true }))
   app.use(bodyParser.json())
 
+  // 플래시 메시지 사용
+  app.use(flash())
+
   // 세션 사용
   app.use(session({
     saveUninitialized: true,
     resave: true,
     secret: config.sessionSecret
   }))
+
+  // 패스포트 모듈 등록 : 반드시 express-session 모듈 아래 등록해야 한다
+  app.use(passport.initialize())
+	app.use(passport.session())
 
   // EJS 템플릿 사용
   app.set('views', './app/views')
