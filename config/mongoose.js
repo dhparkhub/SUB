@@ -12,6 +12,7 @@ module.exports = () => {
 
   // 모델 등록
   require('../app/models/user.server.model')
+  require('../app/models/score.server.model')
 
   return db
 }
