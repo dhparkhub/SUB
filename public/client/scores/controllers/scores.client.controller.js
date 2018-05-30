@@ -27,10 +27,10 @@ angular.module('scores').controller('ScoresController', [
       $scope.score = ''
       score.$save((response) => {
         // console.log('After registering scores: ', response)
-        $scope.user.total += response.score
-        $scope.user.count++
+        $scope.user.scores.total += response.score
+        $scope.user.scores.count++
         $scope.scores.total += response.score
-        $scope.scores.push(response)
+        $scope.scores.unshift(response)
       }, (errorResponse) => {
         // console.log('After registering scores(error): ', errorResponse)
         $scope.error = errorResponse.data.message
@@ -48,8 +48,8 @@ angular.module('scores').controller('ScoresController', [
               $scope.scores.splice(i, 1)
             }
           }
-          $scope.user.count--
-          $scope.user.total -= score.score
+          $scope.user.scores.count--
+          $scope.user.scores.total -= score.score
           $scope.scores.total -= score.score
         })
       }
