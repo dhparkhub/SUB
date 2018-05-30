@@ -7,21 +7,22 @@ angular.module('main').controller('MainController', [
 
     // 회원가입
     $scope.signup = () => {
-      $http({
-        method: 'POST',
-        url: '/signup',
-        data: {
-          email: $scope.email,
-          username: $scope.username,
-          password: $scope.password
-        }
-      }).then((response) => {
-        // console.log('After signup success: ', response)
-        location.href = '/'
-      }, (errorResponse) => {
-        // console.log('After signup error: ', errorResponse)
-        $scope.error = errorResponse.data.message
-      })
+      alert('테스트 하지마라, 신재용!')
+      // $http({
+      //   method: 'POST',
+      //   url: '/signup',
+      //   data: {
+      //     email: $scope.email,
+      //     username: $scope.username,
+      //     password: $scope.password
+      //   }
+      // }).then((response) => {
+      //   // console.log('After signup success: ', response)
+      //   location.href = '/'
+      // }, (errorResponse) => {
+      //   // console.log('After signup error: ', errorResponse)
+      //   $scope.error = errorResponse.data.message
+      // })
     }
 
     // 사용자 리스트 불러오기
