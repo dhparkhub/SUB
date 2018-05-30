@@ -1,7 +1,7 @@
 <section data-ng-controller="UsersController" data-ng-init="find()">
   <h1 class="mt-4">Score Board</h1><hr>
 
-  <section class="mt-4 mb-4">
+  <section class="mt-4 mb-4" data-ng-show="user && !userId">
     <h2 class="sr-only">Register Score</h2>
     <div class="alert alert-primary" role="alert" data-ng-show="error">
       <span data-ng-bind="error"></span>
@@ -34,8 +34,8 @@
       </thead>
       <tbody>
         <tr>
-          <td class="text-center"><span data-ng-bind="user.scores.count"></span></td>
-          <td class="text-center"><span data-ng-bind="user.scores.total / user.scores.count | number: 0"></span></td>
+          <td class="text-center"><span data-ng-bind="count"></span></td>
+          <td class="text-center"><span data-ng-bind="total / count | number: 0"></span></td>
           <td class="text-center"><span data-ng-bind="scores.length"></span></td>
           <td class="text-center"><span data-ng-bind="scores.total / scores.length | number: 0"></span></td>
         </tr>
@@ -52,14 +52,14 @@
         <tr>
           <th class="text-center">Date</th>
           <th class="text-center">Score</th>
-          <th class="text-center">Delete</th>
+          <th class="text-center" data-ng-show="!userId">Delete</th>
         </tr>
       </thead>
       <tbody>
         <tr data-ng-repeat="score in scores">
           <td class="text-center"><span data-ng-bind="score.created | date: 'MMM d'"></span></td>
           <td class="text-center"><span data-ng-bind="score.score"></span></td>
-          <td class="text-center"><span class="badge badge-dark" data-ng-click="delete(score)">delete</span></td>
+          <td class="text-center" data-ng-show="!userId"><span class="badge badge-dark" data-ng-click="delete(score)">delete</span></td>
         </tr>
       </tbody>
     </table>

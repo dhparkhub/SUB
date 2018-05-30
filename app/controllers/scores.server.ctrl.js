@@ -22,7 +22,7 @@ exports.list = (req, res, next) => {
   const days = req.query.days ? req.query.days : 30
 
   const options = {
-    created: { $gt: (new Date()).getDate() - days }
+    created: { $gt: (new Date()).getDate() - days },
   }
 
   if (req.query.mode == PRIVATE) {

@@ -4,10 +4,18 @@ const passport = require('passport')
 const mongoose = require('mongoose')
 const User = mongoose.model('User')
 
-exports.list = (req, res, next) => {
+exports.list = (req, res) => {
   User.find().sort({ created: -1 }).exec((err, users) => {
     if (err) return res.status(400).send({ message: common.getErrorMessage(err) })
     return res.json(users)
+  })
+}
+
+exports.read = (req, res) => {
+  User.findOne({ _id: req.params.userId }).exec((err, user) => {
+    if (err) return res.status(400).send({ message: common.getErrorMessage(err) })
+    if (!user) return res.status(404).send({ message: 'User not found' })
+    return res.json(user)
   })
 }
 
