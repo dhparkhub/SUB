@@ -1,0 +1,68 @@
+<section data-ng-controller="ScoresController" data-ng-init="find()">
+  <h1 class="mt-4">Score Dashboard</h1><hr>
+
+  <section class="mt-4 mb-4">
+    <h2 class="sr-only">Register Score</h2>
+    <div class="alert alert-primary" role="alert" data-ng-show="error">
+      <span data-ng-bind="error"></span>
+    </div>
+    <form class="form-inline">
+      <div class="form-group mb-2 mr-2">
+        <label for="score" class="sr-only">Score</label>
+        <input type="number" class="form-control" data-ng-model="score" id="score" placeholder="Score(0~300)">
+      </div>
+      <button type="button" class="btn btn-primary mb-2" data-ng-click="create()">Register</button>
+    </form>
+  </section>
+
+  <section class="mt-4 mb-4 card">
+    <div class="card-header text-center">
+      <h2 class="h5 mb-0">Score Information</h2>
+    </div>
+    <table class="table table-bordered mb-0">
+      <thead>
+        <tr>
+          <th colspan="2" class="text-center">Total</th>
+          <th colspan="2" class="text-center">Last 30 Days</th>
+        </tr>
+        <tr>
+          <th class="text-center">Count</th>
+          <th class="text-center">Average</th>
+          <th class="text-center">Count</th>
+          <th class="text-center">Average</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-center"><span data-ng-bind="user.scores.count"></span></td>
+          <td class="text-center"><span data-ng-bind="user.scores.total / user.scores.count | number: 0"></span></td>
+          <td class="text-center"><span data-ng-bind="scores.length"></span></td>
+          <td class="text-center"><span data-ng-bind="scores.total / scores.length | number: 0"></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="mt-4 mb-4 card">
+    <div class="card-header text-center">
+      <h2 class="h5 mb-0">History in the last 30 days</h2>
+    </div>
+    <table class="table table-striped mb-0">
+      <thead>
+        <tr>
+          <th class="text-center">Date</th>
+          <th class="text-center">Score</th>
+          <th class="text-center">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-ng-repeat="score in scores">
+          <td class="text-center"><span data-ng-bind="score.created | date: 'MMM d'"></span></td>
+          <td class="text-center"><span data-ng-bind="score.score"></span></td>
+          <td class="text-center"><span class="badge badge-dark" data-ng-click="delete(score)">delete</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+</section>
