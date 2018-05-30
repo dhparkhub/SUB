@@ -1,4 +1,26 @@
-<section data-ng-controller="MainController">
-  <h1 class="mt-4">Main Dashboard</h1>
-  <hr>
+<section data-ng-controller="MainController" data-ng-init="find()">
+  <h1 class="mt-4">Main Dashboard</h1><hr>
+
+  <section class="mt-4 mb-4 card">
+    <div class="card-header text-center">
+      <h2 class="h5 mb-0">Rank</h2>
+    </div>
+    <table class="table table-striped mb-0">
+      <thead>
+        <tr>
+          <th class="text-center">#</th>
+          <th class="text-center">Name</th>
+          <th class="text-center">Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-ng-repeat="user in users | orderBy: rank">
+          <td class="text-center"><span data-ng-bind="$index+1"></span></td>
+          <td class="text-center"><span data-ng-bind="user.username"></span></td>
+          <td class="text-center"><span data-ng-bind="average(user.scores.total, user.scores.count) | number: 0"></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
 </section>

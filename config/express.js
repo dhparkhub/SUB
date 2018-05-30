@@ -46,6 +46,7 @@ module.exports = () => {
   // 라우팅 파일 등록
   require('../app/routes/index.server.routes')(app)
   require('../app/routes/scores.server.routes')(app)
+  require('../app/routes/users.server.routes')(app)
 
   return app
 }
