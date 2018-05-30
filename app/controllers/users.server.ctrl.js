@@ -38,7 +38,7 @@ exports.signup = (req, res) => {
 }
 
 exports.signin = passport.authenticate('local', {
-  successRedirect: '/#!/',
+  successRedirect: '/#!/users',
   failureRedirect: '/#!/signin',
   failureFlash: true
 })
