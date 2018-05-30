@@ -1,5 +1,5 @@
 
-angular.module('scores').controller('ScoresController', [
+angular.module('users').controller('UsersController', [
   '$scope', '$http', 'Authentication', 'Scores', ($scope, $http, Authentication, Scores) => {
 
     $scope.user = Authentication

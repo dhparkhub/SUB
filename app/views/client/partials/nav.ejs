@@ -10,8 +10,7 @@
     <div class="collapse navbar-collapse" id="navbar">
       <ul class="navbar-nav ml-auto">
         <% if(user) { %>
-        <li class="nav-item"><a class="nav-link" href="/#!/scores">Scores</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">User</a></li>
+        <li class="nav-item"><a class="nav-link" href="/#!/users"><%= username %></a></li>
         <li class="nav-item"><a class="nav-link" href="/signout">Signout</a></li>
         <% } else { %>
         <li class="nav-item"><a class="nav-link" href="/#!/signup">Sign up</a></li>
