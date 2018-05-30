@@ -30,10 +30,10 @@ angular.module('main').controller('MainController', [
         method: 'GET',
         url: '/api/users'
       }).then((response) => {
-        console.log('After find users: ', response)
+        // console.log('After find users: ', response)
         $scope.users = response.data
       }, (errorResponse) => {
-        console.log('After find users(error): ', errorResponse)
+        // console.log('After find users(error): ', errorResponse)
         $scope.error = errorResponse.data.message
       })
     }
