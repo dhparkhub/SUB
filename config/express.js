@@ -42,6 +42,7 @@ module.exports = () => {
 
   // 정적 파일 서비스
   app.use(express.static('./public'))
+  app.use('/favicon.ico', express.static('./public/favicon.ico'))// favicon 
 
   // 라우팅 파일 등록
   require('../app/routes/index.server.routes')(app)
