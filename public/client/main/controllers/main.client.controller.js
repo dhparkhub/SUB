@@ -1,9 +1,10 @@
 
 angular.module('main').controller('MainController', [
-  '$scope', '$http', 'Authentication', ($scope, $http, Authentication) => {
+  '$scope', '$http', '$cookies', 'Authentication', ($scope, $http, $cookies, Authentication) => {
 
     $scope.user = Authentication
     $scope.users = []
+    $scope.email = $cookies.get('email')
 
     // 회원가입
     $scope.signup = () => {
@@ -23,6 +24,12 @@ angular.module('main').controller('MainController', [
       //   // console.log('After signup error: ', errorResponse)
       //   $scope.error = errorResponse.data.message
       // })
+    }
+
+    $scope.signin = () => {
+      // console.log('Signin function')
+      $cookies.put('email', $scope.email)// 쿠키에 저장 
+      document.getElementsByTagName('form')[0].submit()
     }
 
     // 사용자 리스트 불러오기

@@ -1,7 +1,7 @@
 
 const app = 'SUB'
 const module = angular.module(app, [
-  'ngResource', 'ngRoute', 'main', 'users', 'scores'
+  'ngResource', 'ngRoute', 'ngCookies', 'main', 'users', 'scores'
 ])
 
 // Configure the hashbang URLs using the $locationProvider services
