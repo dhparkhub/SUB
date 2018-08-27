@@ -14,11 +14,7 @@ const UserSchema = new Schema({
   username: { type: String, required: 'Username cannot be blank' },
   password: { type: String, required: 'Password cannot be blank' },
   salt: { type: String },
-  created: { type: Date, default: Date.now },
-  scores: {
-    count: { type: Number, default: 0 },
-    total: { type: Number, default: 0 }
-  }
+  created: { type: Date, default: Date.now }
 })
 
 // 사용자를 저장하기 전에 비밀번호를 단방향 암호화하여 저장한다
