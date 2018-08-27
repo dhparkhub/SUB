@@ -54,6 +54,7 @@ angular.module('users').controller('UsersController', [
         // console.log('After registering scores: ', response)
         $scope.scores.total += response.score
         $scope.scores.unshift(response)
+        document.getElementById("score").focus();
       }, (errorResponse) => {
         // console.log('After registering scores(error): ', errorResponse)
         $scope.error = errorResponse.data.message
