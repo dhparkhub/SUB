@@ -28,7 +28,7 @@ angular.module('main').controller('MainController', [
 
     $scope.signin = () => {
       // console.log('Signin function')
-      $cookies.put('email', $scope.email)// 쿠키에 저장 
+      $cookies.put('email', $scope.email)// 쿠키에 저장
       document.getElementsByTagName('form')[0].submit()
     }
 
@@ -36,7 +36,7 @@ angular.module('main').controller('MainController', [
     $scope.find = () => {
       $http({
         method: 'GET',
-        url: '/api/users'
+        url: '/api/main'
       }).then((response) => {
         // console.log('After find users: ', response)
         $scope.users = response.data
@@ -45,10 +45,6 @@ angular.module('main').controller('MainController', [
         $scope.error = errorResponse.data.message
       })
     }
-
-    // filter function
-    $scope.rank = (user) => -$scope.average(user.scores.total, user.scores.count)
-    $scope.average = (total, count) => count ? (total / count) : 0;
 
   }
 ])
