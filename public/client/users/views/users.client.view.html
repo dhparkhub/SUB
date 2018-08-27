@@ -26,22 +26,14 @@
     <table class="table table-bordered mb-0">
       <thead>
         <tr>
-          <th colspan="2" class="text-center">Total</th>
-          <th colspan="2" class="text-center">Last Month</th>
-        </tr>
-        <tr>
-          <th class="text-center">Cnt.</th>
-          <th class="text-center">Avg.</th>
-          <th class="text-center">Cnt.</th>
-          <th class="text-center">Avg.</th>
+          <th class="text-center">Count</th>
+          <th class="text-center">Average</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td class="text-center"><span data-ng-bind="count"></span></td>
-          <td class="text-center"><span data-ng-bind="total / count | number: 0"></span></td>
           <td class="text-center"><span data-ng-bind="scores.length"></span></td>
-          <td class="text-center"><span data-ng-bind="scores.total / scores.length | number: 0"></span></td>
+          <td class="text-center"><span data-ng-bind="scores.total / scores.length | number: 2"></span></td>
         </tr>
       </tbody>
     </table>
@@ -49,21 +41,21 @@
 
   <section class="mt-4 mb-4 card">
     <div class="card-header text-center">
-      <h2 class="h5 mb-0">History in the last 30 days</h2>
+      <h2 class="h5 mb-0">Histories</h2>
     </div>
     <table class="table table-striped mb-0">
       <thead>
         <tr>
           <th class="text-center">Date</th>
           <th class="text-center">Score</th>
-          <th class="text-center" data-ng-show="!userId">Delete</th>
+          <th class="text-center" data-ng-show="user">Delete</th>
         </tr>
       </thead>
       <tbody>
         <tr data-ng-repeat="score in scores">
           <td class="text-center"><span data-ng-bind="score.created | date: 'MMM d'"></span></td>
           <td class="text-center"><span data-ng-bind="score.score"></span></td>
-          <td class="text-center" data-ng-show="!userId"><span class="badge badge-dark" data-ng-click="delete(score)">delete</span></td>
+          <td class="text-center" data-ng-show="user"><span class="badge badge-dark" data-ng-click="delete(score)">delete</span></td>
         </tr>
       </tbody>
     </table>
