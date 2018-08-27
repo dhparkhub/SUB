@@ -7,7 +7,8 @@ const Score = mongoose.model('Score')
 exports.create = (req, res, next) => {
   const score = new Score({
     score: req.body.score,
-    player: req.user
+    player: req.query.user ? req.query.user : req.user,
+    created: req.body.created
   })
   score.save((err, score) => {
     if (err) return res.status(400).send({ message: common.getErrorMessage(err) })

@@ -1,12 +1,16 @@
 <section data-ng-controller="UsersController" data-ng-init="find()">
   <h1 class="mt-4">Score Board</h1><hr>
 
-  <section class="mt-4 mb-4" data-ng-show="user && !userId">
+  <section class="mt-4 mb-4" data-ng-show="user">
     <h2 class="sr-only">Register Score</h2>
     <div class="alert alert-primary" role="alert" data-ng-show="error">
       <span data-ng-bind="error"></span>
     </div>
     <form class="form-inline">
+      <div class="form-group mb-2 mr-2">
+        <label for="date" class="sr-only">Date</label>
+        <input type="text" class="form-control" data-ng-model="created" id="created" placeholder="Date(yyyy-mm-dd)">
+      </div>
       <div class="form-group mb-2 mr-2">
         <label for="score" class="sr-only">Score</label>
         <input type="number" class="form-control" data-ng-model="score" id="score" placeholder="Score(0~300)">

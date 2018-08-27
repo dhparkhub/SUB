@@ -14,7 +14,7 @@ angular.module('users').controller('UsersController', [
       $location.path('users')
     }
 
-    // 임의의 사용자가 다른 사용자의 정보를 보는 경우 
+    // 임의의 사용자가 다른 사용자의 정보를 보는 경우
     if ($routeParams.userId && (!$scope.user || $scope.user._id != $routeParams.userId)) {
       $http({
         method: 'GET',
@@ -47,9 +47,14 @@ angular.module('users').controller('UsersController', [
     }
 
     $scope.create = () => {
-      const score = new Scores({ score: $scope.score })
+      const score = new Scores({
+        score: $scope.score,
+        created: $scope.created
+      })
       $scope.score = ''
-      score.$save((response) => {
+      score.$save({
+        user: $routeParams.userId,
+      }, (response) => {
         // console.log('After registering scores: ', response)
         $scope.total += response.score
         $scope.count++
@@ -62,7 +67,6 @@ angular.module('users').controller('UsersController', [
     }
 
     $scope.delete = (score) => {
-      console.log(score);
       if(confirm('Do you really want to delete this score?')) {
         score.$remove({
           scoreId: score._id

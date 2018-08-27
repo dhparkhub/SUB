@@ -9,8 +9,8 @@ module.exports = (app) => {
 
   app.route('/api/scores/:scoreId')
   .get(scores.read)
-  .put(users.signed, scores.hasAuth, scores.update)
-  .delete(users.signed, scores.hasAuth, scores.delete)
+  .put(users.signed, scores.update)
+  .delete(users.signed, scores.delete)
 
   app.get('/api/scores/count', scores.count)
 
