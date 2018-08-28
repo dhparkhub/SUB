@@ -21,7 +21,7 @@
 
   <section class="mt-4 mb-4 card">
     <div class="card-header text-center">
-      <h2 class="h5 mb-0">Score Information</h2>
+      <h2 class="h5 mb-0">In the last three months</h2>
     </div>
     <table class="table table-bordered mb-0">
       <thead>
@@ -41,7 +41,7 @@
 
   <section class="mt-4 mb-4 card">
     <div class="card-header text-center">
-      <h2 class="h5 mb-0">Histories</h2>
+      <h2 class="h5 mb-0">In the last three months</h2>
     </div>
     <table class="table table-striped mb-0">
       <thead>
@@ -53,7 +53,7 @@
       </thead>
       <tbody>
         <tr data-ng-repeat="score in scores">
-          <td class="text-center"><span data-ng-bind="score.created | date: 'MMM d'"></span></td>
+          <td class="text-center"><span data-ng-bind="score.created | date: 'M/d'"></span></td>
           <td class="text-center"><span data-ng-bind="score.score"></span></td>
           <td class="text-center" data-ng-show="user"><span class="badge badge-dark" data-ng-click="delete(score)">delete</span></td>
         </tr>

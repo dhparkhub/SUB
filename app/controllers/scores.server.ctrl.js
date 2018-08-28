@@ -20,10 +20,13 @@ exports.list = (req, res, next) => {
   // console.log('Scores list: ', req.query)
   const PUBLIC = 0;// 모든 사용자의 점수를 가져오는 모드
   const PRIVATE = 1;// 특정 사용자의 점수를 가져오는 모드
-  const days = req.query.days ? req.query.days : 30
+  
+  const days = req.query.days ? req.query.days : 1
+  const today = new Date()
+  today.setMonth(today.getMonth() - 3)
 
   const options = {
-    created: { $gt: (new Date()).getDate() - days },
+    created: { $gt: today },
   }
 
   if (req.query.mode == PRIVATE) {
