@@ -41,3 +41,27 @@ exports.ranks = (req, res) => {
     return res.json(scores)
   })
 }
+
+/*
+db.getCollection('scores').aggregate([{
+  $group: {
+    _id: "$player",
+    total: { $sum: "$score" },
+    count: { $sum: 1 },
+    average: { $avg: "$score" }
+  }
+}, {
+  $lookup: {
+    from: "users",
+    localField: "_id",
+    foreignField: "_id",
+    as: "player"
+  }
+}, {
+  $sort:  {
+    average: -1
+  }
+}, {
+  $unwind: "$player"
+}])
+*/
