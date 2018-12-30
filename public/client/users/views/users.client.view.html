@@ -1,5 +1,9 @@
 <section data-ng-controller="UsersController" data-ng-init="find()">
-  <h1 class="mt-4">Score Board</h1><hr>
+  <h1 class="mt-4">
+    <span data-ng-bind="username"></span>
+    <small>(In the last three months)</small>
+  </h1>
+  <hr>
 
   <section class="mt-4 mb-4" data-ng-show="user">
     <h2 class="sr-only">Register Score</h2>
@@ -21,7 +25,7 @@
 
   <section class="mt-4 mb-4 card">
     <div class="card-header text-center">
-      <h2 class="h5 mb-0">In the last three months</h2>
+      <h2 class="h5 mb-0">Information</h2>
     </div>
     <table class="table table-bordered mb-0">
       <thead>
@@ -41,7 +45,7 @@
 
   <section class="mt-4 mb-4 card">
     <div class="card-header text-center">
-      <h2 class="h5 mb-0">In the last three months</h2>
+      <h2 class="h5 mb-0">Records</h2>
     </div>
     <table class="table table-striped mb-0">
       <thead>

@@ -6,6 +6,7 @@ angular.module('users').controller('UsersController', [
     $scope.scores = []
     $scope.score = ''
     $scope.userId = $routeParams.userId
+    $scope.username = ''
 
     // 자기 자신의 정보로 들어오면 users 페이지로 이동시킨다
     if ($scope.user && $scope.user._id == $routeParams.userId) {
@@ -35,6 +36,9 @@ angular.module('users').controller('UsersController', [
         $scope.scores.total = 0
         $scope.scores.forEach((element) => {
           $scope.scores.total += element.score
+          if ($scope.username == '') {
+            $scope.username = element.player.username
+          }
         })
       }, (errorResponse) => {
         // console.log('After finding scores(error): ', errorResponse)
