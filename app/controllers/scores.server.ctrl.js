@@ -20,7 +20,7 @@ exports.list = (req, res, next) => {
   // console.log('Scores list: ', req.query)
   const PUBLIC = 0;// 모든 사용자의 점수를 가져오는 모드
   const PRIVATE = 1;// 특정 사용자의 점수를 가져오는 모드
-  
+
   const days = req.query.days ? req.query.days : 1
   const today = new Date()
   today.setMonth(today.getMonth() - 3)
@@ -35,7 +35,7 @@ exports.list = (req, res, next) => {
     options.player = req.query.user ? req.query.user : req.user
   }
 
-  Score.find(options).sort({ created: -1 }).populate('player', 'username').exec((err, scores) => {
+  Score.find(options).sort({ created: -1, _id: -1 }).populate('player', 'username').exec((err, scores) => {
     if (err) return res.status(400).send({ message: common.getErrorMessage(err) })
     return res.json(scores)
   })
