@@ -4,6 +4,9 @@ angular.module('main').config(['$routeProvider', ($routeProvider) => {
   .when('/', {
     templateUrl: 'client/main/views/main.client.view.html'
   })
+  .when('/lucky', {
+    templateUrl: 'client/main/views/lucky.client.view.html'
+  })
   .when('/signup', {
     templateUrl: 'client/main/views/signup.client.view.html'
   })

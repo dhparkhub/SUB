@@ -1,0 +1,21 @@
+<section data-ng-controller="MainController">
+  <h1 class="mt-4">Lucky Score</h1><hr>
+
+  <section class="mt-4 mb-4">
+    <h3>
+      Lucky Score Generator
+      <button type="button" class="btn btn-primary" onclick="generateScore()">Generate</button>
+    </h3>
+    <p style="font-size: 20px">
+      score: <span id="score">0</span> (75~225)
+    </p>
+  </section>
+
+  <script type="text/javascript">
+    const generateScore = () => {
+      let score = Math.floor(Math.random() * 150) + 75
+      document.getElementById('score').innerHTML = score
+    }
+  </script>
+
+</section>
