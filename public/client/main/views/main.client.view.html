@@ -10,6 +10,8 @@
         <tr>
           <th class="text-center">#</th>
           <th class="text-center">Name</th>
+          <th class="text-center">Total</th>
+          <th class="text-center">Count</th>
           <th class="text-center">Average</th>
         </tr>
       </thead>
@@ -17,6 +19,8 @@
         <tr data-ng-repeat="user in users | orderBy: rank">
           <td class="text-center"><span data-ng-bind="$index+1"></span></td>
           <td class="text-center"><a data-ng-href="/#!/users/{{user._id}}" data-ng-bind="user.player.username"></a></td>
+          <td class="text-center"><span data-ng-bind="user.total | number: 0"></span></td>
+          <td class="text-center"><span data-ng-bind="user.count | number: 0"></span></td>
           <td class="text-center"><span data-ng-bind="user.average | number: 0"></span></td>
         </tr>
       </tbody>
