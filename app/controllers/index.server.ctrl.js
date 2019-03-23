@@ -16,8 +16,8 @@ exports.render = (req, res) => {
 
 exports.ranks = (req, res) => {
   const date = new Date()
-  const quarter = 3 * 30 * 24 * 60 * 60 * 1000
-  date.setTime(date.getTime() - quarter)
+  date.setMonth(date.getMonth() - 3)
+  
   const options = [
     {
       $match: {
