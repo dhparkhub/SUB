@@ -97,11 +97,9 @@ angular.module('main').controller('MainController', [
         }
 
         $scope.users_.sort((a, b) => {
-          if (a.scores[3].average != b.scores[3].average) return a.scores[3].average < b.scores[3].average
-          if (a.scores[2].average != b.scores[2].average) return a.scores[2].average < b.scores[2].average
-          if (a.scores[1].average != b.scores[1].average) return a.scores[1].average < b.scores[1].average
-          if (a.scores[0].average != b.scores[0].average) return a.scores[0].average < b.scores[0].average
-          return a.username < b.username
+          const today = new Date()
+          const index = today.getMonth() / 3
+          return a.scores[index].average > b.scores[index].average
         })
 
       }, (errorResponse) => {
