@@ -56,7 +56,7 @@ exports.ranks_ = (req, res) => {
   const options = [
     {
       $match: {
-        created: { $gte: '2019-01-01' }
+        created: { $gte: new Date('2019-01-01') }
       }
     },
     {

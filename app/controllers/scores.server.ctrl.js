@@ -24,9 +24,10 @@ exports.list = (req, res, next) => {
   const days = req.query.days ? req.query.days : 1
   const today = new Date()
   today.setMonth(today.getMonth() - 3)
+  const fromThisYear = new Date(today.getFullYear(), 0, 1)
 
   const options = {
-    created: { $gt: today },
+    created: { $gte: fromThisYear },
   }
 
   if (req.query.mode == PRIVATE) {
