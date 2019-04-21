@@ -4,6 +4,8 @@ angular.module('main').controller('MainController', [
 
     $scope.user = Authentication
     $scope.users = []
+    $scope.scores = []
+    $scope.ranks = {}
     $scope.email = $cookies.get('email')
 
     // 회원가입
@@ -44,18 +46,51 @@ angular.module('main').controller('MainController', [
         // console.log('After find users(error): ', errorResponse)
         $scope.error = errorResponse.data.message
       })
-    }
 
-    $http({
-      method: 'GET',
-      url: '/api/scores'
-    }).then((response) => {
-      console.log('After find scores: ', response)
-      // $scope.users = response.data
-    }, (errorResponse) => {
-      console.log('After find users(error): ', errorResponse)
-      $scope.error = errorResponse.data.message
-    })
+      // ranks
+      $http({
+        method: 'GET',
+        url: '/api/scores'
+      }).then((response) => {
+        console.log('After find scores: ', response)
+        $scope.scores = response.data
+
+        const today = new Date()
+        const quarters = []
+        for (let i=0; i<4; i++) {
+          quarters.push(new Date(today.getFullYear(), i*3, 1))
+        }
+
+        for (let score of $scope.scores) {
+          const player = score.player
+
+          if (!$scope.ranks[player._id]) {
+            $scope.ranks[player._id] = {}
+            $scope.ranks[player._id].username = player.username
+            $scope.ranks[player._id].scores = new Array(4)
+            for (let playerScore of $scope.ranks[player._id].scores) {
+              playerScore = {}
+              playerScore.total = 0
+              playerScore.count = 0
+            }
+          }
+
+          for (let i=0; i<quarters.length; i++) {
+            if (score.created < quarters[i]) {
+              $scope.ranks[player._id].scores[i].total += score.score
+              $scope.ranks[player._id].scores[i].count += 1
+              break;
+            }
+          }
+        }
+
+        console.log($scope.ranks)
+
+      }, (errorResponse) => {
+        console.log('After find users(error): ', errorResponse)
+        $scope.error = errorResponse.data.message
+      })
+    }
 
   }
 ])
