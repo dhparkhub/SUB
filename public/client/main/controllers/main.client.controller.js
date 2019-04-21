@@ -61,24 +61,31 @@ angular.module('main').controller('MainController', [
           quarters.push(new Date(today.getFullYear(), i*3, 1))
         }
 
+        const ranks = $scope.ranks
         for (let score of $scope.scores) {
           const player = score.player
 
-          if (!$scope.ranks[player._id]) {
-            $scope.ranks[player._id] = {}
-            $scope.ranks[player._id].username = player.username
-            $scope.ranks[player._id].scores = new Array(4)
-            for (let playerScore of $scope.ranks[player._id].scores) {
-              playerScore = {}
-              playerScore.total = 0
-              playerScore.count = 0
-            }
+          if (!ranks[player._id]) {
+            ranks[player._id] = {}
+            ranks[player._id].username = player.username
+            ranks[player._id].scores = new Array(4)
+            // for (let playerScore of $scope.ranks[player._id].scores) {
+            //   playerScore = {}
+            //   playerScore.total = 0
+            //   playerScore.count = 0
+            // }
           }
 
           for (let i=0; i<quarters.length; i++) {
-            if (score.created < quarters[i]) {
-              $scope.ranks[player._id].scores[i].total += score.score
-              $scope.ranks[player._id].scores[i].count += 1
+            if (new Date(score.created) < quarters[i]) {
+              if (!ranks[player._id].scores[i]) {
+                ranks[player._id].scores[i] = {}
+                ranks[player._id].scores[i].total = score.score
+                ranks[player._id].scores[i].count = 1
+              } else {
+                ranks[player._id].scores[i].total += score.score
+                ranks[player._id].scores[i].count += 1
+              }
               break;
             }
           }
