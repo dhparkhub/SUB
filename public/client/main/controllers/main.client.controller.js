@@ -96,7 +96,7 @@ angular.module('main').controller('MainController', [
           $scope.users_.push(ranks[rank])
         }
 
-        const today = new Date()
+        // const today = new Date()
         const quarter = today.getMonth() / 3
         for (let i=0; i<=quarter; i++) {
           $scope.users_.sort((a, b) => {
