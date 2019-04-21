@@ -46,5 +46,16 @@ angular.module('main').controller('MainController', [
       })
     }
 
+    $http({
+      method: 'GET',
+      url: '/api/main_'
+    }).then((response) => {
+      console.log('After find users: ', response)
+      $scope.users = response.data
+    }, (errorResponse) => {
+      console.log('After find users(error): ', errorResponse)
+      $scope.error = errorResponse.data.message
+    })
+
   }
 ])
