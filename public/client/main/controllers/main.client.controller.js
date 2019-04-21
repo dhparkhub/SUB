@@ -89,14 +89,20 @@ angular.module('main').controller('MainController', [
           for (let score of ranks[rank].scores) {
             if (score.total != 0) {
               score.average = score.total / score.count
-              ranks[rank].average = score.average
+              // ranks[rank].average = score.average
             }
           }
-          ranks[rank].average = ranks[rank].average ? ranks[rank].average : 0
+          // ranks[rank].average = ranks[rank].average ? ranks[rank].average : 0
           $scope.users_.push(ranks[rank])
         }
 
-        // console.log($scope.users_)
+        $scope.users_.sort((a, b) => {
+          if (a.scores[3].average != b.scores[3].average) return a.scores[3].average < b.scores[3].average
+          if (a.scores[2].average != b.scores[2].average) return a.scores[2].average < b.scores[2].average
+          if (a.scores[1].average != b.scores[1].average) return a.scores[1].average < b.scores[1].average
+          if (a.scores[0].average != b.scores[0].average) return a.scores[0].average < b.scores[0].average
+          return a.username < b.username
+        })
 
       }, (errorResponse) => {
         // console.log('After find users(error): ', errorResponse)
