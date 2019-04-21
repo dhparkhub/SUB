@@ -23,7 +23,7 @@ exports.list = (req, res, next) => {
 
   const days = req.query.days ? req.query.days : 1
   const today = new Date()
-  today.setMonth(today.getMonth() - 3)
+  // today.setMonth(today.getMonth() - 3)
   const fromThisYear = new Date(today.getFullYear(), 0, 1)
 
   const options = {

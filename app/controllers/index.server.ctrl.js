@@ -52,41 +52,6 @@ exports.ranks = (req, res) => {
   })
 }
 
-exports.ranks_ = (req, res) => {
-  const options = [
-    {
-      $match: {
-        created: { $gte: new Date('2019-01-01') }
-      }
-    },
-    {
-      $group: {
-        _id: "$player",
-        total: { $sum: "$score" },
-        count: { $sum: 1 },
-        average: { $avg: "$score" }
-      }
-    }, {
-      $lookup: {
-        from: "users",
-        localField: "_id",
-        foreignField: "_id",
-        as: "player"
-      }
-    }, {
-      $sort:  {
-        average: -1
-      }
-    }, {
-      $unwind: "$player"
-    }
-  ]
-  Score.aggregate(options, (err, scores) => {
-    if (err) return res.status(400).send({ message: common.getErrorMessage(err) })
-    return res.json(scores)
-  })
-}
-
 /*
 db.getCollection("scores").aggregate([{$group:{_id:"$player",total:{$sum:"$score"},count:{$sum:1},average:{$avg:"$score"}}},{$lookup:{from:"users",localField:"_id",foreignField:"_id",as:"player"}},{$sort:{average:-1}},{$unwind:"$player"}]);
 */

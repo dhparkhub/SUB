@@ -25,4 +25,32 @@
     </table>
   </section>
 
+  <section class="mt-4 mb-4 card">
+    <div class="card-header text-center">
+      <h2 class="h5 mb-0">Rank</h2>
+    </div>
+    <table class="table table-striped mb-0">
+      <thead>
+        <tr>
+          <th class="text-center">#</th>
+          <th class="text-center">Name</th>
+          <th class="text-center">Q1</th>
+          <th class="text-center">Q2</th>
+          <th class="text-center">Q3</th>
+          <th class="text-center">Q4</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-ng-repeat="user in users_ | orderBy: -user.average">
+          <td class="text-center"><span data-ng-bind="$index+1"></span></td>
+          <td class="text-center"><a data-ng-href="/#!/users/{{user._id}}" data-ng-bind="user.username"></a></td>
+          <td class="text-center"><span data-ng-bind="user.scores[0].average | number: 0"></span></td>
+          <td class="text-center"><span data-ng-bind="user.scores[1].average | number: 0"></span></td>
+          <td class="text-center"><span data-ng-bind="user.scores[2].average | number: 0"></span></td>
+          <td class="text-center"><span data-ng-bind="user.scores[3].average | number: 0"></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
 </section>

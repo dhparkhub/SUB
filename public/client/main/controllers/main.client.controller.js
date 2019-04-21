@@ -4,6 +4,7 @@ angular.module('main').controller('MainController', [
 
     $scope.user = Authentication
     $scope.users = []
+    $scope.users_ = []
     $scope.scores = []
     $scope.ranks = {}
     $scope.email = $cookies.get('email')
@@ -52,13 +53,13 @@ angular.module('main').controller('MainController', [
         method: 'GET',
         url: '/api/scores'
       }).then((response) => {
-        console.log('After find scores: ', response)
+        // console.log('After find scores: ', response)
         $scope.scores = response.data
 
         const today = new Date()
         const quarters = []
         for (let i=0; i<4; i++) {
-          quarters.push(new Date(today.getFullYear(), i*3, 1))
+          quarters.push(new Date(today.getFullYear(), i*3 + 3, 1))
         }
 
         const ranks = $scope.ranks
@@ -68,33 +69,37 @@ angular.module('main').controller('MainController', [
           if (!ranks[player._id]) {
             ranks[player._id] = {}
             ranks[player._id].username = player.username
-            ranks[player._id].scores = new Array(4)
-            // for (let playerScore of $scope.ranks[player._id].scores) {
-            //   playerScore = {}
-            //   playerScore.total = 0
-            //   playerScore.count = 0
-            // }
+            ranks[player._id].scores = []
+            ranks[player._id].scores.push({total: 0, count: 0, average: 0})
+            ranks[player._id].scores.push({total: 0, count: 0, average: 0})
+            ranks[player._id].scores.push({total: 0, count: 0, average: 0})
+            ranks[player._id].scores.push({total: 0, count: 0, average: 0})
           }
 
           for (let i=0; i<quarters.length; i++) {
             if (new Date(score.created) < quarters[i]) {
-              if (!ranks[player._id].scores[i]) {
-                ranks[player._id].scores[i] = {}
-                ranks[player._id].scores[i].total = score.score
-                ranks[player._id].scores[i].count = 1
-              } else {
-                ranks[player._id].scores[i].total += score.score
-                ranks[player._id].scores[i].count += 1
-              }
-              break;
+              ranks[player._id].scores[i].total += score.score
+              ranks[player._id].scores[i].count += 1
+              break
             }
           }
         }
 
-        console.log($scope.ranks)
+        for (const rank in ranks) {
+          for (let score of ranks[rank].scores) {
+            if (score.total != 0) {
+              score.average = score.total / score.count
+              ranks[rank].average = score.average
+            }
+          }
+          ranks[rank].average = ranks[rank].average ? ranks[rank].average : 0
+          $scope.users_.push(ranks[rank])
+        }
+
+        console.log($scope.users_)
 
       }, (errorResponse) => {
-        console.log('After find users(error): ', errorResponse)
+        // console.log('After find users(error): ', errorResponse)
         $scope.error = errorResponse.data.message
       })
     }
