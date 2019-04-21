@@ -43,7 +43,7 @@
       <tbody>
         <tr data-ng-repeat="user in users_">
           <td class="text-center"><span data-ng-bind="$index+1"></span></td>
-          <td class="text-center"><a data-ng-href="/#!/users/{{user._id}}" data-ng-bind="user.username"></a></td>
+          <td class="text-center"><a data-ng-href="/#!/users{user._id}" data-ng-bind="user.username"></a></td>
           <td class="text-center"><span data-ng-bind="user.scores[0].average | number: 0"></span></td>
           <td class="text-center"><span data-ng-bind="user.scores[1].average | number: 0"></span></td>
           <td class="text-center"><span data-ng-bind="user.scores[2].average | number: 0"></span></td>

@@ -68,6 +68,7 @@ angular.module('main').controller('MainController', [
 
           if (!ranks[player._id]) {
             ranks[player._id] = {}
+            ranks[player._id]._id
             ranks[player._id].username = player.username
             ranks[player._id].scores = []
             ranks[player._id].scores.push({total: 0, count: 0, average: 0})
@@ -104,7 +105,7 @@ angular.module('main').controller('MainController', [
           })
         }
 
-
+        // console.log($scope.users_)
 
       }, (errorResponse) => {
         // console.log('After find users(error): ', errorResponse)
