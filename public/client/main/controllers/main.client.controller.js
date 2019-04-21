@@ -99,7 +99,7 @@ angular.module('main').controller('MainController', [
         $scope.users_.sort((a, b) => {
           const today = new Date()
           const index = today.getMonth() / 3
-          return a.scores[index].average > b.scores[index].average
+          return b.scores[index].average - a.scores[index].average
         })
 
       }, (errorResponse) => {
