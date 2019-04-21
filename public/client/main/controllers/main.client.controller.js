@@ -96,11 +96,15 @@ angular.module('main').controller('MainController', [
           $scope.users_.push(ranks[rank])
         }
 
-        $scope.users_.sort((a, b) => {
-          const today = new Date()
-          const index = today.getMonth() / 3
-          return b.scores[index].average - a.scores[index].average
-        })
+        const today = new Date()
+        const quarter = today.getMonth() / 3
+        for (let i=0; i<=quarter; i++) {
+          $scope.users_.sort((a, b) => {
+            return b.scores[i].average - a.scores[i].average
+          })
+        }
+
+
 
       }, (errorResponse) => {
         // console.log('After find users(error): ', errorResponse)
