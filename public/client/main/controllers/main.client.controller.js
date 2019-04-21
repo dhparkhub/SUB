@@ -96,7 +96,7 @@ angular.module('main').controller('MainController', [
           $scope.users_.push(ranks[rank])
         }
 
-        console.log($scope.users_)
+        // console.log($scope.users_)
 
       }, (errorResponse) => {
         // console.log('After find users(error): ', errorResponse)
