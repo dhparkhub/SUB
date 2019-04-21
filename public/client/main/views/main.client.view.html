@@ -41,7 +41,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr data-ng-repeat="user in users_ | orderBy: -user.average">
+        <tr data-ng-repeat="user in users_ | orderBy: '-average'">
           <td class="text-center"><span data-ng-bind="$index+1"></span></td>
           <td class="text-center"><a data-ng-href="/#!/users/{{user._id}}" data-ng-bind="user.username"></a></td>
           <td class="text-center"><span data-ng-bind="user.scores[0].average | number: 0"></span></td>
