@@ -36,6 +36,15 @@ exports.list = (req, res, next) => {
     options.player = req.query.user ? req.query.user : req.user
   }
 
+  if (!options.player) {
+    options.player = {
+      $nin: [
+        '5bf40712fc76a70004a39b09',// 김태수
+        '5c03cc3dbdbbeb0004e475db',// 신혜림
+      ]
+    }
+  }
+
   Score.find(options).sort({ created: -1, _id: -1 }).populate('player', 'username').exec((err, scores) => {
     if (err) return res.status(400).send({ message: common.getErrorMessage(err) })
     return res.json(scores)
