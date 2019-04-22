@@ -59,7 +59,7 @@ angular.module('main').controller('MainController', [
         const today = new Date()
         const quarters = []
         for (let i=0; i<4; i++) {
-          quarters.push(new Date(today.getFullYear(), i*3 + 2, 1))
+          quarters.push(new Date(today.getFullYear(), (i+1)*3 + 2, 1))
         }
 
         const ranks = $scope.ranks
