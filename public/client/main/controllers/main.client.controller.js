@@ -121,5 +121,18 @@ angular.module('main').controller('MainController', [
       })
     }
 
+    $scope.orderBy = (i) => {
+      console.log('orderBy')
+      if (i == 4) {
+        $scope.users_.sort((a, b) => {
+          return b.average - a.average
+        })
+      } else {
+        $scope.users_.sort((a, b) => {
+          return b.scores[i].average - a.scores[i].average
+        })
+      }
+    }
+
   }
 ])
