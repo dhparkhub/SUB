@@ -34,11 +34,11 @@
         <tr>
           <th class="text-center">#</th>
           <th class="text-center">Name</th>
-          <th class="text-center">Q1(12~2)</th>
-          <th class="text-center">Q2(3~5)</th>
-          <th class="text-center">Q3(6~8)</th>
-          <th class="text-center">Q4(9~11)</th>
-          <th class="text-center">Year</th>
+          <th class="text-center">Q1(3~5)</th>
+          <th class="text-center">Q2(6~8)</th>
+          <th class="text-center">Q3(9~11)</th>
+          <th class="text-center">Q4(12~2)</th>
+          <th class="text-center">Average</th>
         </tr>
       </thead>
       <tbody>
@@ -49,6 +49,8 @@
           <td class="text-center"><span data-ng-bind="user.scores[1].average | number: 0"></span></td>
           <td class="text-center"><span data-ng-bind="user.scores[2].average | number: 0"></span></td>
           <td class="text-center"><span data-ng-bind="user.scores[3].average | number: 0"></span></td>
+          <td class="text-center"><span data-ng-bind="user.scores[3].average | number: 0"></span></td>
+          <td class="text-center"><span data-ng-bind="user.average | number: 0"></span></td>
         </tr>
       </tbody>
     </table>
