@@ -24,7 +24,7 @@ exports.list = (req, res, next) => {
   const days = req.query.days ? req.query.days : 1
   const today = new Date()
   // today.setMonth(today.getMonth() - 3)
-  const fromThisYear = new Date(today.getFullYear(), 0, 1)
+  const fromThisYear = new Date(today.getFullYear(), 2, 1)// from march 
 
   const options = {
     created: { $gte: fromThisYear },
