@@ -40,7 +40,7 @@ exports.list = (req, res, next) => {
     options.player = {
       $nin: [
         '5bf40712fc76a70004a39b09',// 김태수
-        // '5c03cc3dbdbbeb0004e475db',// 신혜림
+        '5c03cc3dbdbbeb0004e475db',// 신혜림
       ]
     }
   }
